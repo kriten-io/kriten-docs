@@ -4,6 +4,7 @@ Documentation for Kriten
 This repository contains:
 ```
 Kriten Concepts      - kriten_concepts.md
+Kriten RBAC          - kriten_rbac.md
 API Schema           - kriten_api_swagger.md
 ```
 
