@@ -63,7 +63,7 @@ Access to all resource types in Kriten is controlled by flexible and granular RB
       "subject_name": "user01",
     }
     ```
-    Where "subject_kind"="users" and "subject_provider"="local" are only supported options in current release of Community Edition of Kriten, "subject_name" specifies user "user01" this binding for, and "subject_id" is unique uuid of user "user01".
+    Where "subject_kind"="users" and "subject_provider"="local" are only supported options in current release of Community Edition of Kriten, "subject_name" specifies user "user01" this binding for.
     
     Only pre-defined built-in Role Binding installed at the time of Kriten initialization is following, which grants root full access to all resources.
     
