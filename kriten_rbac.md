@@ -22,7 +22,7 @@ Access to all resource types in Kriten is controlled by flexible and granular RB
     ```
     Where "provider"="local" is only support option in current release of Community Edition of Kriten and means only locally stored users are supported.
 
-* Roles - Role defines resource type (supported types are 'runners', 'tasks', 'jobs', 'users', 'roles', 'role_binding') and array of resources of that type and permission: "read" or "write", where "read" allows only to read, and "write" allows everything, including modifications and deletions.
+* Roles - Role defines resource type (supported types are 'runners', 'tasks', 'jobs', 'users', 'roles', 'role_bindings') and array of resources of that type and permission: "read" or "write", where "read" allows only to read, and "write" allows everything, including modifications and deletions.
 
     Example of creating Role (body of request):
 
@@ -60,7 +60,7 @@ Access to all resource types in Kriten is controlled by flexible and granular RB
       "role_name": "RunHelloKritenRole",
       "subject_kind": "users",
       "subject_provider": "local",
-      "subject_name": "user01",
+      "subject_name": "user01"
     }
     ```
     Where "subject_kind"="users" and "subject_provider"="local" are only supported options in current release of Community Edition of Kriten, "subject_name" specifies user "user01" this binding for.
@@ -150,8 +150,7 @@ curl -b ./token.txt $KRITEN_URL'/api/v1/roles' \
   "role_name": "RunHelloKritenRole",
   "subject_kind": "users",
   "subject_provider": "local",
-  "subject_name": "user01",
-  "subject_id": "aca12539-e6e5-4782-a470-e7d80c8dd11e"
+  "subject_name": "user01"
 }'
 ```
 
