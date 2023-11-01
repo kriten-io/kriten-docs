@@ -36,7 +36,7 @@ Access to all resource types in Kriten is controlled by flexible and granular RB
       "access": "write"
     }
     ```
-    In above example, there Role "RunHelloKritenRole" is being created, which allows execution of Jobs ("write" permission) against Task name "hello-kriten" only. Permission could be granted to multiple Tasks, as resource_ids       field is an array.
+    In above example, there Role "RunHelloKritenRole" is being created, which allows execution of Jobs ("write" permission) against Task name "hello-kriten" only. Permission could be granted to multiple Tasks, as resource_ids field is an array.
 
     There are pre-defined built-in Roles, which are created at the time of installation of Kriten and cannot be modified or deleted:
 
@@ -50,8 +50,9 @@ Access to all resource types in Kriten is controlled by flexible and granular RB
     |`WriteAllRoles`| roles | * | write
     |`WriteAllRoleBindings`| role_bindings | * | write
 
-* Role Bindings - Bind Users and Roles. Users are referenced by name and unique ID, created at the time of User creation.
-    Example of creating Role Binding (body of request), which binds Role "RuneHelloKritenRole" created above to the user "jlewis".
+* Role Bindings - Bind Users and Roles.
+  
+    Example of creating Role Binding (body of request), which binds Role "RuneHelloKritenRole" created above to the user "user01".
 
     ```json
     {
@@ -60,10 +61,9 @@ Access to all resource types in Kriten is controlled by flexible and granular RB
       "subject_kind": "users",
       "subject_provider": "local",
       "subject_name": "user01",
-      "subject_id": "aca12539-e6e5-4782-a470-e7d80c8dd11e"
     }
     ```
-    Where "subject_kind"="users" and "subject_provider"="local" are only supported options in current release of Community Edition of Kriten, "subject_name" specifies user "user01" this binding for, and "subject_id" is unique      uuid of user "user01".
+    Where "subject_kind"="users" and "subject_provider"="local" are only supported options in current release of Community Edition of Kriten, "subject_name" specifies user "user01" this binding for, and "subject_id" is unique uuid of user "user01".
     
     Only pre-defined built-in Role Binding installed at the time of Kriten initialization is following, which grants root full access to all resources.
     
