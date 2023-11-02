@@ -77,7 +77,7 @@ For REST API swagger documentation refer to http://github.com/kriten-io/kriten-d
 
 We will demonstrate RBAC on "ansible-command" example, available in https://github.com/kriten-io/kriten-examples repo. This is a simple ansible playbook, which allows execution of show commands on a network devices or a group of devices in inventory.
 
-We will user root user to create the Runner and the Task as per "ansible-command" example.  Only root user will be able to run Jobs against configured Task. We would like to create a new user, i.e. "user01" and we want that user to be able to run "ansible-command" Task. In example, $KRITEN_URL is set to the URL of your Kriten instance, eg. `export KRITEN_URL=http://kriten-community.kriten.io`.
+We will login as root user to create the Runner and the Task as per "ansible-command" example.  Only root user will be able to run Jobs against configured Task. We would like to create a new user, i.e. "user01" and we want that user to be able to run "ansible-command" Task, but not have access to read or modify Runner or Task itself. In example, $KRITEN_URL is set to the URL of your Kriten instance, eg. `export KRITEN_URL=http://kriten-community.kriten.io`.
 
 1. Login as root:
 
