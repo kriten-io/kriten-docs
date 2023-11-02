@@ -75,9 +75,9 @@ For REST API swagger documentation refer to http://github.com/kriten-io/kriten-d
 
 ## RBAC Example
 
-We will demonstrate RBAC on "hello-kriten" example, available in https://github.com/kriten-io/kriten-examples repo. This is a simple python script, which demonstrates capabilities of Kriten.
+We will demonstrate RBAC on "ansible-command" example, available in https://github.com/kriten-io/kriten-examples repo. This is a simple ansible playbook, which allows execution of show commands on a network devices or a group of devices in inventory.
 
-We will user root user to create the Runner and the Task as per "hello-kriten" example.  Only root user will be able to run Jobs against configured Task. We would like to create a new user, i.e. "user01" and we want that user to be able to run "hello-kriten" Task. In example, $KRITEN_URL is set to the URL of your Kriten instance, eg. `export KRITEN_URL=http://kriten-community.kriten.io`.
+We will user root user to create the Runner and the Task as per "ansible-command" example.  Only root user will be able to run Jobs against configured Task. We would like to create a new user, i.e. "user01" and we want that user to be able to run "ansible-command" Task. In example, $KRITEN_URL is set to the URL of your Kriten instance, eg. `export KRITEN_URL=http://kriten-community.kriten.io`.
 
 1. Login as root:
 
@@ -104,14 +104,24 @@ curl -b ./token.txt $KRITEN_URL'/api/v1/users' \
 }'
 ```
 
-To demonstrate that newly created "user01" doesn't have permission to launch Jobs againt "hello-kriten" Task, which confirm below by trying to launch the Job as logged in user "user01":
+To demonstrate that newly created "user01" doesn't have permission to run "network-command" Task, which confirms below by trying it as logged in user "user01":
 
 ```console
-curl -b ./token.txt $KRITEN_URL'/api/v1/jobs/hello-kriten' \
+curl -c ./token.txt $KRITEN_URL'/api/v1/login' \
 --header 'Content-Type: application/json' \
 --data '{
-  "agent_name": "Ethan Hunt",
-  "operation":"Mission impossible"
+  "username": "user01",
+  "password": "p@55w0rd",
+  "provider": "local"
+}'
+```
+
+```console
+curl -b ./token.txt $KRITEN_URL'/api/v1/jobs/network-command' \
+--header 'Content-Type: application/json' \
+--data '{
+  "target_hosts": "arista",
+  "command":"show version"
 }'
 ```
 
@@ -123,22 +133,22 @@ Response:
 }
 ```
 
-3. Create Role allowing to "write" to resource type "jobs" for "hello-kriten" only.
+3. Create Role allowing to "write" to resource type "jobs" for "network-command" only.
 
 ```console
 curl -b ./token.txt $KRITEN_URL'/api/v1/roles' \
 --header 'Content-Type: application/json' \
 --data '{
-  "name": "RunHelloKritenRole",
+  "name": "RunNetworkCommandRole",
   "resource": "jobs",
   "resources_ids": [
-      "hello-kriten"
+      "network-command"
   ],
   "access": "write"
 }'
 ```
 
-4. Create Role Binding between Role "RunHelloKritenRole" and user "user01".
+4. Create Role Binding between Role "RunAnsibleCommandRole" and user "user01".
 
 We will need unique uuid of the user "user01", provide by Kriten as response to the user creation or can be obtained via GET Users method.
 
@@ -146,51 +156,71 @@ We will need unique uuid of the user "user01", provide by Kriten as response to 
 curl -b ./token.txt $KRITEN_URL'/api/v1/roles' \
 --header 'Content-Type: application/json' \
 --data '{
-  "name": "RunHelloKritenRoleBinding",
-  "role_name": "RunHelloKritenRole",
+  "name": "RunAnsibleCommandRoleBinding",
+  "role_name": "RunAnsibleCommandRole",
   "subject_kind": "users",
   "subject_provider": "local",
   "subject_name": "user01"
 }'
 ```
 
-As result "user01" is now allowed to launch Jobs against "hello-kriten" Task.
+As result "user01" is now allowed to run "network-command" Task.
 
 ```console
-curl -b ./token.txt $KRITEN_URL'/api/v1/jobs/hello-kriten' \
+url -b ./token.txt $KRITEN_URL'/api/v1/jobs/network-command' \
 --header 'Content-Type: application/json' \
 --data '{
-  "agent_name": "Ethan Hunt",
-  "operation":"Mission impossible"
+  "target_hosts": "arista",
+  "command": "show version"
 }'
 ```
 
 Which returns a job identifier.
 ```json
-{"msg":"job executed successfully","value":"hello-kriten-ks67g"}
+{"msg":"job executed successfully","value":"network-command-ks67g"}
 ```
 
 Read the job output.
 ```console
-curl -b ./token.txt $KRITEN_URL'/api/v1/jobs/hello-kriten-ks67g' \
+curl -b ./token.txt $KRITEN_URL'/api/v1/jobs/network-command-ks67g' \
 --header 'Content-Type: application/json'
 ```
-   which returns a message.
+which returns a message.
    
 ```console
-Hello, Kriten!
+PLAY [Read extra_vars] *********************************************************
 
-This script demonstrates Kriten's capabilities.
-It reads input variables (EXTRA_VARS) and secrets, and prints them.
+TASK [Reading target hosts from input vars and storing as localhost fact] ******
+ok: [localhost]
 
+PLAY [Network Configs Backup] **************************************************
 
-{'extra_vars': {'agent_name': 'Ethan Hunt', 'operation': 'Mission impossible'},
- 'secrets': {'password': 'P@55w0rd!',
-             'super_secret': '1234567890!',
-             'username': 'admin'}}
+TASK [Set command variable] ****************************************************
+ok: [evo-eos02]
 
+TASK [Cisco NXOS Command] ******************************************************
+skipping: [evo-eos02]
 
-Script completed.
+TASK [Cisco IOS Command] *******************************************************
+skipping: [evo-eos02]
+
+TASK [Arista EOS Command] ******************************************************
+ok: [evo-eos02]
+[WARNING]: Platform linux on host evo-eos02 is using the discovered Python
+interpreter at /usr/local/bin/python, but future installation of another Python
+interpreter could change this. See https://docs.ansible.com/ansible/2.9/referen
+ce_appendices/interpreter_discovery.html for more information.
+
+TASK [Print command output into stdout] ****************************************
+ok: [evo-eos02] => {
+    "msg": [
+        "Arista vEOS-lab\nHardware version: \nSerial number: C56AD1FD5F9532C2FD51A852146109EB\nHardware MAC address: 0050.56cd.2b91\nSystem MAC address: 0050.56cd.2b91\n\nSoftware image version: 4.27.0F\nArchitecture: x86_64\nInternal build version: 4.27.0F-24308433.4270F\nInternal build ID: 9088210e-613b-47db-b273-7c7b8d45a086\nImage format version: 1.0\n\nUptime: 9 weeks, 4 days, 18 hours and 16 minutes\nTotal memory: 4002360 kB\nFree memory: 2737704 kB"
+    ]
+}
+
+PLAY RECAP *********************************************************************
+evo-eos02                  : ok=3    changed=0    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0   
+localhost                  : ok=1    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0     
 ```
 
 
