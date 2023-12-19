@@ -13,10 +13,9 @@ Access to all resource types in Kriten is controlled by flexible and granular RB
   
     Example of creating User:
     ```console
-    POST $KRITEN_URL'/api/v1/users
+    POST $KRITEN_URL'/api/v1/users'
 
     ```
-  
     Body of request:
 
     ```json
@@ -31,6 +30,13 @@ Access to all resource types in Kriten is controlled by flexible and granular RB
 * Group - permissions are granted to local groups, thus user needs to be a member of a group to gain permission.
 
   Example of adding user to the group, i.e. "NetworkReadOnly":
+  ```console
+
+  POST $KRITEN_URL'/api/v1/groups/NetworkReadOnly/users'
+
+  ```
+  Body of request:
+  
   ```json
   [
     {
@@ -44,7 +50,12 @@ As it is an array, one or more users can be added into a group at once.
 * Role - Role defines resource type (supported types are 'runners', 'tasks', 'jobs', 'users', 'roles', 'role_bindings') and array of resources of that type and permission: "read" or "write", where "read" allows only to read, and "write" allows everything, including modifications and deletions.
 
     Example of creating Role (body of request):
+    ```console
+    POST $KRITEN_URL'/api/v1/roles'
 
+    ```
+    Body of request:
+  
     ```json
     {
       "name": "NetworkCommandRole",
@@ -71,7 +82,12 @@ As it is an array, one or more users can be added into a group at once.
 
 * Role Binding - Bind Group and Role.
   
-    Example of creating Role Binding (body of request), which binds Role "RuneHelloKritenRole" created above to the user "user01".
+    Example of creating Role Binding, which binds Role "NetworkCommandRole" created above to the group "NetworkReadOnly".
+    ```console
+    POST 
+
+    ```
+    Body of request:
 
     ```json
     {
@@ -157,7 +173,7 @@ Response:
 curl -b ./token.txt $KRITEN_URL'/api/v1/roles' \
 --header 'Content-Type: application/json' \
 --data '{
-  "name": "RunNetworkCommandRole",
+  "name": "NetworkCommandRole",
   "resource": "jobs",
   "resources_ids": [
       "network-command"
@@ -172,7 +188,7 @@ curl -b ./token.txt $KRITEN_URL'/api/v1/roles' \
 curl -b ./token.txt $KRITEN_URL'/api/v1/roles' \
 --header 'Content-Type: application/json' \
 --data '{
-  "name": "RunNetworkCommandRole",
+  "name": "NetworkCommandRole",
   "resource": "jobs",
   "resources_ids": [
       "network-command"
@@ -186,14 +202,14 @@ curl -b ./token.txt $KRITEN_URL'/api/v1/roles' \
 We will need unique uuid of the user "user01", provide by Kriten as response to the user creation or can be obtained via GET Users method.
 
 ```console
-curl -b ./token.txt $KRITEN_URL'/api/v1/roles' \
+curl -b ./token.txt $KRITEN_URL'/api/v1/role_bindings' \
 --header 'Content-Type: application/json' \
 --data '{
-  "name": "RunAnsibleCommandRoleBinding",
-  "role_name": "RunAnsibleCommandRole",
-  "subject_kind": "users",
+  "name": "NetworkCommandRoleBinding",
+  "role_name": "NetworkCommandRole",
+  "subject_kind": "groups",
   "subject_provider": "local",
-  "subject_name": "user01"
+  "subject_name": "NetworkReadOnly"
 }'
 ```
 
@@ -213,9 +229,9 @@ Which returns a job identifier.
 {"msg":"job executed successfully","value":"network-command-ks67g"}
 ```
 
-Read the job output.
+Read the job log:
 ```console
-curl -b ./token.txt $KRITEN_URL'/api/v1/jobs/network-command-ks67g' \
+curl -b ./token.txt $KRITEN_URL'/api/v1/jobs/network-command-ks67g/log' \
 --header 'Content-Type: application/json'
 ```
 which returns a message.
