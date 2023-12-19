@@ -12,9 +12,12 @@ Access to all resource types in Kriten is controlled by flexible and granular RB
 * Users - only local users with provider type 'local' are currently supported in Community Edition. New users are created by root user or by already existing user with RBAC "write" permission to manage Users. Any newly created user doesn't have any default permissions other than login into Kriten.
   
     Example of creating User:
-    ```console POST $KRITEN_URL'/api/v1/users```
+    ```console
+    POST $KRITEN_URL'/api/v1/users
+
+    ```
   
-      Body of request:
+    Body of request:
 
     ```json
     {
