@@ -27,7 +27,7 @@ Access to all resource types in Kriten is controlled by flexible and granular RB
     |`WriteAllRoles`| roles | * | write
     |`WriteAllRoleBindings`| role_bindings | * | write
 
-* Role Binding - Bind Group and Role.
+* Role Binding - Bind Role to a Group.
   
     Only pre-defined built-in Role Binding installed at the time of Kriten initialization is following, which grants Admin group, containing root user, full access to all resources.
     
@@ -68,8 +68,10 @@ curl -b ./token.txt $KRITEN_URL'/api/v1/users' \
 }'
 ```
 
-To demonstrate that newly created "user01" doesn't have permission to run "network-command" Task, which confirms below by trying it as logged in user "user01":
+To demonstrate that newly created "user01" doesn't have permission to run "network-command" task, which confirms below by trying it as logged in user "user01":
 
+  Login to Kriten as user "user01":
+  
 ```console
 curl -c ./token.txt $KRITEN_URL'/api/v1/login' \
 --header 'Content-Type: application/json' \
@@ -80,6 +82,8 @@ curl -c ./token.txt $KRITEN_URL'/api/v1/login' \
 }'
 ```
 
+  Run task "network-command":
+
 ```console
 curl -b ./token.txt $KRITEN_URL'/api/v1/jobs/network-command' \
 --header 'Content-Type: application/json' \
@@ -89,15 +93,44 @@ curl -b ./token.txt $KRITEN_URL'/api/v1/jobs/network-command' \
 }'
 ```
 
-Response:
+  Response:
 
 ```json
 {
     "error": "unauthorized - user cannot access resource"
 }
 ```
+It confirms that by default any user doesn't have permission to run any task.
+
 3. Create Group and add user "user01" to that group.
 
+  Create group "NetworkReadOnly":
+  
+```console
+curl -b ./token.txt $KRITEN_URL'/api/v1/groups' \
+--header 'Content-Type: application/json' \
+--data '{
+    "name": "NetworkReadOnly",
+    "provider": "local"
+}'
+```
+
+  Add user "user01" into group "NetworkReadOnly":
+
+```console
+curl -b ./token.txt $KRITEN_URL'/api/v1/groups/NetworkReadOnly/users' \
+--header 'Content-Type: application/json' \
+--data '[
+    {
+        "name": "user01",
+        "provider": "local"
+    }
+]'
+```
+As body contains array, one or more users can be assigned to the group at once.
+
+4. Create a role allowing to "write" to resource type "jobs" for "network-command" task only. That role would allow executing task "network-command" (run/execute jobs).  
+
 ```console
 curl -b ./token.txt $KRITEN_URL'/api/v1/roles' \
 --header 'Content-Type: application/json' \
@@ -111,22 +144,7 @@ curl -b ./token.txt $KRITEN_URL'/api/v1/roles' \
 }'
 ```
 
-3. Create Role allowing to "write" to resource type "jobs" for "network-command" only.
-
-```console
-curl -b ./token.txt $KRITEN_URL'/api/v1/roles' \
---header 'Content-Type: application/json' \
---data '{
-  "name": "NetworkCommandRole",
-  "resource": "jobs",
-  "resources_ids": [
-      "network-command"
-  ],
-  "access": "write"
-}'
-```
-
-4. Create Role Binding between Role "RunAnsibleCommandRole" and user "user01".
+5. Create role binding between role "NetworkCommandRole" and user "user01".
 
 We will need unique uuid of the user "user01", provide by Kriten as response to the user creation or can be obtained via GET Users method.
 
@@ -142,7 +160,7 @@ curl -b ./token.txt $KRITEN_URL'/api/v1/role_bindings' \
 }'
 ```
 
-As result "user01" is now allowed to run "network-command" Task.
+As result "user01" is now allowed to run "network-command" task.
 
 ```console
 url -b ./token.txt $KRITEN_URL'/api/v1/jobs/network-command' \
