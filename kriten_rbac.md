@@ -7,11 +7,14 @@
 
 ## RBAC overview
 
-Access to all resource types in Kriten is controlled by flexible and granular RBAC. RBAC controlls "read" or "write" permission to all resource types in Kriten: Runners, Tasks, Jobs, Users, Roles and Role Binding. Key components of RBAC are Users, Roles and Role Bindings, defined as following:
+Access to all resource types in Kriten is controlled by flexible and granular RBAC. RBAC controlls "read" or "write" permission to all resource types in Kriten: Runners, Tasks, Jobs, Users, Groups, Roles and Role Bindings. Key components of RBAC are Users, Roles and Role Bindings, defined as following:
 
 * Users - only local users with provider type 'local' are currently supported in Community Edition. New users are created by root user or by already existing user with RBAC "write" permission to manage Users. Any newly created user doesn't have any default permissions other than login into Kriten.
   
-    Example of creating User (body of request):
+    Example of creating User:
+    ```console POST $KRITEN_URL'/api/v1/users```
+  
+      Body of request:
 
     ```json
     {
@@ -22,21 +25,34 @@ Access to all resource types in Kriten is controlled by flexible and granular RB
     ```
     Where "provider"="local" is only support option in current release of Community Edition of Kriten and means only locally stored users are supported.
 
-* Roles - Role defines resource type (supported types are 'runners', 'tasks', 'jobs', 'users', 'roles', 'role_bindings') and array of resources of that type and permission: "read" or "write", where "read" allows only to read, and "write" allows everything, including modifications and deletions.
+* Group - permissions are granted to local groups, thus user needs to be a member of a group to gain permission.
+
+  Example of adding user to the group, i.e. "NetworkReadOnly":
+  ```json
+  [
+    {
+        "name": "user01",
+        "provider": "local"
+    }
+  ]
+  ```
+As it is an array, one or more users can be added into a group at once.
+
+* Role - Role defines resource type (supported types are 'runners', 'tasks', 'jobs', 'users', 'roles', 'role_bindings') and array of resources of that type and permission: "read" or "write", where "read" allows only to read, and "write" allows everything, including modifications and deletions.
 
     Example of creating Role (body of request):
 
     ```json
     {
-      "name": "RunHelloKritenRole",
+      "name": "NetworkCommandRole",
       "resource": "jobs",
       "resources_ids": [
-          "hello-kriten"
+          "network-command"
       ],
       "access": "write"
     }
     ```
-    In above example, there Role "RunHelloKritenRole" is being created, which allows execution of Jobs ("write" permission) against Task name "hello-kriten" only. Permission could be granted to multiple Tasks, as resource_ids field is an array.
+    In above example, there Role "RunHelloKritenRole" is being created, which allows execution of Jobs ("write" permission) against Task name "network-command" only. Permission could be granted to multiple Tasks, as resource_ids field is an array.
 
     There are pre-defined built-in Roles, which are created at the time of installation of Kriten and cannot be modified or deleted:
 
@@ -50,26 +66,26 @@ Access to all resource types in Kriten is controlled by flexible and granular RB
     |`WriteAllRoles`| roles | * | write
     |`WriteAllRoleBindings`| role_bindings | * | write
 
-* Role Bindings - Bind Users and Roles.
+* Role Binding - Bind Group and Role.
   
     Example of creating Role Binding (body of request), which binds Role "RuneHelloKritenRole" created above to the user "user01".
 
     ```json
     {
-      "name": "RunHelloKritenRoleBinding",
-      "role_name": "RunHelloKritenRole",
-      "subject_kind": "users",
+      "name": "NetworkCommandRoleBinding",
+      "role_name": "NetworkCommandRole",
+      "subject_kind": "groups",
       "subject_provider": "local",
-      "subject_name": "user01"
+      "subject_name": "NetworkReadOnly"
     }
     ```
-    Where "subject_kind"="users" and "subject_provider"="local" are only supported options in current release of Community Edition of Kriten, "subject_name" specifies user "user01" this binding for.
+    Where "subject_kind"="groups" and "subject_provider"="local" are only supported options in current release of Community Edition of Kriten, "subject_name" specifies group "NetworkReadOnly".
     
-    Only pre-defined built-in Role Binding installed at the time of Kriten initialization is following, which grants root full access to all resources.
+    Only pre-defined built-in Role Binding installed at the time of Kriten initialization is following, which grants Admin group, containing root user, full access to all resources.
     
     | Role Binding Name | Role Name | Subject Name | Subject Kind | Subject Provider
     |-------------------|-----------|--------------|--------------|----------------|
-    |`RootAdminAccess`| Admin | root | root | local
+    |`RootAdminAccess`| Admin | Admin | groups | local
 
 For REST API swagger documentation refer to http://github.com/kriten-io/kriten-docs.
 
@@ -131,6 +147,20 @@ Response:
 {
     "error": "unauthorized - user cannot access resource"
 }
+```
+3. Create Group and add user "user01" to that group.
+
+```console
+curl -b ./token.txt $KRITEN_URL'/api/v1/roles' \
+--header 'Content-Type: application/json' \
+--data '{
+  "name": "RunNetworkCommandRole",
+  "resource": "jobs",
+  "resources_ids": [
+      "network-command"
+  ],
+  "access": "write"
+}'
 ```
 
 3. Create Role allowing to "write" to resource type "jobs" for "network-command" only.
