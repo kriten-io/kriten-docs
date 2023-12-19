@@ -7,15 +7,15 @@
 
 ## RBAC overview
 
-Access to all resource types in Kriten is controlled by flexible and granular RBAC. RBAC controlls "read" or "write" permission to all resource types in Kriten: Runners, Tasks, Jobs, Users, Groups, Roles and Role Bindings. Key components of RBAC are Users, Roles and Role Bindings, defined as following:
+Access to all resource types in Kriten is controlled by flexible and granular RBAC. RBAC controlls "read" or "write" permission to all resource types in Kriten: Runners, Tasks, Jobs, Users, Groups, Roles and Role Bindings. Key components of RBAC are Users, Groups, Roles and Role Bindings, defined as following:
 
 * Users - only local users with provider type 'local' are currently supported in Community Edition. New users are created by root user or by already existing user with RBAC "write" permission to manage Users. Any newly created user doesn't have any default permissions other than login into Kriten.
 
-* Group - permissions are granted to local groups, thus user needs to be a member of a group to gain permission.
+* Group - permissions are granted by binding roles to local groups, thus user needs to be a member of a group to gain permissions.
 
-* Role - Role defines resource type (supported types are 'runners', 'tasks', 'jobs', 'users', 'roles', 'role_bindings') and array of resources of that type and permission: "read" or "write", where "read" allows only to read, and "write" allows everything, including modifications and deletions.
+* Role - role defines resource type (supported types are 'runners', 'tasks', 'jobs', 'users', 'roles', 'role_bindings') and array of resources of that type and permission: "read" or "write", where "read" allows only to read, and "write" allows everything, including modifications and deletions.
 
-  There are pre-defined built-in Roles, which are created at the time of installation of Kriten and cannot be modified or deleted:
+  There are pre-defined built-in roles, which are created at the time of installation of Kriten and cannot be modified or deleted:
 
     |Role Name|Resource|Resource IDs|Permission
     |---------|-----------|-------|--------|
@@ -27,7 +27,7 @@ Access to all resource types in Kriten is controlled by flexible and granular RB
     |`WriteAllRoles`| roles | * | write
     |`WriteAllRoleBindings`| role_bindings | * | write
 
-* Role Binding - Bind Role to a Group.
+* Role Binding - bind role to a group.
   
     Only pre-defined built-in Role Binding installed at the time of Kriten initialization is following, which grants Admin group, containing root user, full access to all resources.
     
