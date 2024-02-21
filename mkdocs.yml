@@ -55,5 +55,13 @@ markdown_extensions:
       emoji_index: !!python/name:materialx.emoji.twemoji
       emoji_generator: !!python/name:materialx.emoji.to_svg
 
+nav:
+  - Overview: "docs/index.md"
+  - User Guide:
+      - Installation:
+        - "docs/installation.md"
+      - Features:
+        - RBAC: "docs/rbac.md"
+        
 copyright: |
   &copy; 2024 <a href="https://github.com/kriten-io"  target="_blank" rel="noopener">Evolvere Technologies</a>
