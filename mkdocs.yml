@@ -58,10 +58,9 @@ markdown_extensions:
 nav:
   - Overview: "docs/index.md"
   - User Guide:
-      - Installation:
-        - "docs/installation.md"
-      - Features:
-        - RBAC: "docs/rbac.md"
+      - Installation: "docs/installation.md"
+  - Features:
+      - RBAC: "docs/rbac.md"
         
 copyright: |
   &copy; 2024 <a href="https://github.com/kriten-io"  target="_blank" rel="noopener">Evolvere Technologies</a>
