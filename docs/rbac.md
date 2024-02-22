@@ -1,4 +1,4 @@
-# RBAC
+# Roles Based Access Control (RBAC)
 
 ## Table of Content
 
