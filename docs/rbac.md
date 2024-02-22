@@ -27,7 +27,6 @@ Access to all resource types in Kriten is controlled by flexible and granular RB
     | `WriteAllRoles` | roles | * | write |
     | `WriteAllRoleBindings` | role_bindings | * | write |
 
-  
 * Role Binding - bind role to a group.
   
     Only pre-defined built-in Role Binding installed at the time of Kriten initialization is following, which grants Admin group, containing root user, full access to all resources.
