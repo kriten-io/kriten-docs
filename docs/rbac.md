@@ -17,8 +17,8 @@ Access to all resource types in Kriten is controlled by flexible and granular RB
 
   There are pre-defined built-in roles, which are created at the time of installation of Kriten and cannot be modified or deleted:
 
-    |Role Name|Resource|Resource IDs|Permission
-    |---------|-----------|-------|--------|
+    |Role Name|Resource|Resource IDs|Permission|
+    |---------|--------|------------|----------|
     |`Admin`| * | * | write
     |`WriteAllRunners`| runners | * | write
     |`WriteAllTasks`| tasks | * | write
