@@ -21,7 +21,7 @@ Permission to perform configuration activities against those objects is granted 
 
 ## Minimum Application changes
 
-For application to run on Kriten minimum optional changes are needed, if application consumes secrets or need input parameters:
+For application to run on Kriten only minimum optional changes are needed, if application consumes secrets or needs input parameters:
 
 * If target application needs secret(s), those are supplied at the time of Task creation as Key/Value pairs and will be stored as Kubernetes Secrets. At the time of execution of a Job against that Task, a K8s Job container will get those secrets mapped as files in /etc/secret directory and as Environmental Vars. Application would need to read those files or Environmental vars to use secrets.
 * If target application needs input parameters for execution, those are supplied at the time of Job submission and mapped as Environmental var 'EXTRA_VARS' inside K8s Job container. Application will need to read environmental var 'EXTRA_VAR' in format of json to consume those parameters.
