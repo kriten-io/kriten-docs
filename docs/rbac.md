@@ -18,24 +18,24 @@ Access to all resource types in Kriten is controlled by flexible and granular RB
   There are pre-defined built-in roles, which are created at the time of installation of Kriten and cannot be modified or deleted:
 
   
-    | Role Name | Resource | Resource IDs |Permission |
-    | --------- |-------- |------------ | ---------- |
-    | `Admin` | * | * | write |
-    | `WriteAllRunners` | runners | * | write |
-    | `WriteAllTasks` | tasks | * | write |
-    | `WriteAllJobs` | jobs | * | write |
-    | `WriteAllUsers` | users | * | write |
-    | `WriteAllRoles` | roles | * | write |
-    | `WriteAllRoleBindings` | role_bindings | * | write |
+    | Role Name | Resource | Resource IDs | Permission |
+    | --------- | -------- | ------------ | ---------- |
+    | Admin | * | * | write |
+    | WriteAllRunners | runners | * | write |
+    | WriteAllTasks | tasks | * | write |
+    | WriteAllJobs | jobs | * | write |
+    | WriteAllUsers | users | * | write |
+    | WriteAllRoles | roles | * | write |
+    | WriteAllRoleBindings | role_bindings | * | write |
 
 
 * Role Binding - bind role to a group.
   
     Only pre-defined built-in Role Binding installed at the time of Kriten initialization is following, which grants Admin group, containing root user, full access to all resources.
     
-    | Role Binding Name | Role Name | Subject Name | Subject Kind | Subject Provider
-    |-------------------|-----------|--------------|--------------|----------------|
-    |`RootAdminAccess`| Admin | Admin | groups | local
+    | Role Binding Name | Role Name | Subject Name | Subject Kind | Subject Provider |
+    | ----------------- | --------- | ------------ | ------------ | ---------------- |
+    | RootAdminAccess | Admin | Admin | groups | local |
 
 For REST API swagger documentation refer to http://github.com/kriten-io/kriten-docs.
 
