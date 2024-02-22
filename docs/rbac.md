@@ -18,15 +18,15 @@ Access to all resource types in Kriten is controlled by flexible and granular RB
   There are pre-defined built-in roles, which are created at the time of installation of Kriten and cannot be modified or deleted.
 
   
-    | Role Name | Resource | Resource IDs | Permission |
-    | --------- | -------- | ------------ | ---------- |
-    | Admin | * | * | write |
-    | WriteAllRunners | runners | * | write |
-    | WriteAllTasks | tasks | * | write |
-    | WriteAllJobs | jobs | * | write |
-    | WriteAllUsers | users | * | write |
-    | WriteAllRoles | roles | * | write |
-    | WriteAllRoleBindings | role_bindings | * | write |
+    | Role Name              | Resource      | Resource IDs | Permission |
+    | :--------------------- | :-----------: | :----------: | :--------: |
+    | `Admin`                | *             | *            | write      |
+    | `WriteAllRunners`      | runners       | *            | write      |
+    | `WriteAllTasks`        | tasks         | *            | write      |
+    | `WriteAllJobs`         | jobs          | *            | write      |
+    | `WriteAllUsers`        | users         | *            | write      |
+    | `WriteAllRoles`        | roles         | *            | write      |
+    | `WriteAllRoleBindings` | role_bindings | *            | write      |
 
 
 * Role Binding - bind role to a group.
