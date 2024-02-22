@@ -19,13 +19,13 @@ Access to all resource types in Kriten is controlled by flexible and granular RB
 
     |Role Name|Resource|Resource IDs|Permission|
     |---------|--------|------------|----------|
-    |`Admin`| * | * | write
-    |`WriteAllRunners`| runners | * | write
-    |`WriteAllTasks`| tasks | * | write
-    |`WriteAllJobs`| jobs | * | write
-    |`WriteAllUsers`| users | * | write
-    |`WriteAllRoles`| roles | * | write
-    |`WriteAllRoleBindings`| role_bindings | * | write
+    |`Admin`| * | * | write |
+    |`WriteAllRunners`| runners | * | write |
+    |`WriteAllTasks`| tasks | * | write |
+    |`WriteAllJobs`| jobs | * | write |
+    |`WriteAllUsers`| users | * | write |
+    |`WriteAllRoles`| roles | * | write |
+    |`WriteAllRoleBindings`| role_bindings | * | write |
 
 * Role Binding - bind role to a group.
   
