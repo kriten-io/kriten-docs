@@ -39,6 +39,7 @@ extra:
       link: https://www.linkedin.com/company/evolvere-technologies
 
 markdown_extensions:
+  - tables
   - pymdownx.highlight:
       anchor_linenums: true
   - pymdownx.inlinehilite
