@@ -15,11 +15,10 @@ Access to all resource types in Kriten is controlled by flexible and granular RB
 
 * Role - role defines resource type (supported types are 'runners', 'tasks', 'jobs', 'users', 'roles', 'role_bindings') and array of resources of that type and permission: "read" or "write", where "read" allows only to read, and "write" allows everything, including modifications and deletions.
 
-  There are pre-defined built-in roles, which are created at the time of installation of Kriten and cannot be modified or deleted.
-<br/>
-  
+    There are pre-defined built-in roles, which are created at the time of installation of Kriten and cannot be modified or deleted.
+
     | Role Name              | Resource      | Resource IDs | Permission |
-    | :--------------------- | :-----------: | :----------: | :--------: |
+    | ---------------------- | ------------- | ------------ | ---------- |
     | `Admin`                | *             | *            | write      |
     | `WriteAllRunners`      | runners       | *            | write      |
     | `WriteAllTasks`        | tasks         | *            | write      |
@@ -27,7 +26,6 @@ Access to all resource types in Kriten is controlled by flexible and granular RB
     | `WriteAllUsers`        | users         | *            | write      |
     | `WriteAllRoles`        | roles         | *            | write      |
     | `WriteAllRoleBindings` | role_bindings | *            | write      |
-
 
 * Role Binding - bind role to a group.
   
