@@ -2,4 +2,4 @@
 
 The documentation is hosted from this site using github pages.
 
-Go [here](kriten.io) to view the documentation.
+Go [here](https://kriten.io) to view the documentation.
