@@ -1,1 +1,5 @@
-# kriten-website
+# kriten-docs
+
+The documentation is hosted from this site using github pages.
+
+Go [here](kriten.io) to view the documentation.
