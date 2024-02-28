@@ -10,10 +10,14 @@
 
 ## Quick start
 
-To install Kriten along with local PostgreSQL and Nginx Ingress, clone this repo and run the following Helm command against target Kubernetes cluster:
+To install Kriten along with local PostgreSQL and Nginx Ingress:
 ```
-$ KRITEN_HOST=<fqdn or ip to reach ingress>
-$ helm install kriten ./kriten-charts -n kriten \
+helm repo add kriten https://kriten-io.github.io/kriten-charts/
+helm repo update
+```
+```
+KRITEN_HOST=<fqdn or ip to reach ingress>
+helm install kriten/kriten -n kriten \
 --set ingress.hosts[0].host=$KRITEN_HOST \
 --set ingress.hosts[0].paths[0].path="/" \
 --set ingress.hosts[0].paths[0].pathType="Prefix" \
@@ -22,7 +26,6 @@ $ helm install kriten ./kriten-charts -n kriten \
 
 For simple examples refer to the following repo: https://github.com/kriten-io/kriten-examples.
 
-Kriten's documentation can be found at that location: https://github.com/kriten-io/kriten-docs
 
 ## Helm install
 
