@@ -29,7 +29,7 @@ For simple examples refer to the following repo: https://github.com/kriten-io/kr
 
 ## Helm install
 
-The Chart can be installed by cloning the Helm Chart from GitHub: https://github.com/kriten-io/kriten-charts
+The Chart can be installed by adding the helm repo to your system.
 
 Kriten can be installed along with local PostgreSQL database (recommended for Dev and UAT environments) or with external PostgreSQL database (recommended for production use).
 
