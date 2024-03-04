@@ -57,9 +57,8 @@ markdown_extensions:
       emoji_generator: !!python/name:materialx.emoji.to_svg
       
 nav:
+  - Installation: "installation.md"
   - Overview: "index.md"
-  - User Guide:
-    - Installation: "installation.md"
   - Feature Configuration:
     - Role Based Access Control: "rbac.md"
     
