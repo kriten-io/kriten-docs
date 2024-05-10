@@ -8,25 +8,6 @@
 - Kubernetes 1.21+
 - Helm v3+
 
-## Quick start
-
-To install Kriten along with local PostgreSQL and Nginx Ingress:
-```
-helm repo add kriten https://kriten-io.github.io/kriten-charts/
-helm repo update
-```
-```
-KRITEN_HOST=<fqdn or ip to reach ingress>
-helm install kriten/kriten -n kriten \
---set ingress.hosts[0].host=$KRITEN_HOST \
---set ingress.hosts[0].paths[0].path="/" \
---set ingress.hosts[0].paths[0].pathType="Prefix" \
---create-namespace
-```
-
-For simple examples refer to the following repo: https://github.com/kriten-io/kriten-examples.
-
-
 ## Helm install
 
 The Chart can be installed by adding the helm repo to your system.
@@ -61,6 +42,11 @@ or
 
 |Parameter|Description|Default|
 |---------|-----------|-------|
+|`ingress.enabled`|Ingress configuration enabled|`true`
+|`ingress.className`|Ingress class name|`"nginx"`
+|`ingress.hosts[0].host`|Ingress host name|`"example.com"`
+|`frontend.enabled`|Set to true to install GUI|`false`
+|`frontend.backendAddress`| URL for the backend ingress|`"example.com"`
 |`replicaCount`|Number of desired Kriten pods|`1`|
 |`image.repository`|Kriten Docker image repository|`"evolvere/kriten-core"`|
 |`image.tag`|Kriten Docker image tag|`"v0.3-beta4"`|
@@ -91,7 +77,4 @@ or
 |`postgresql.auth.password`|PostgreSQL password|`kriten`
 |`postgresql.auth.database`|PostgreSQL database name|`kriten`
 |`postgresql.persistence.enabled`|PostgreSQL database persistnce storage enabled|`true`
-|`ingress.enabled`|Ingress configuration enabled|`true`
-|`ingress.className`|Ingress class name|`"nginx"`
-|`ingress.hosts`|Ingress hosts and paths definitions|`[]`
 
