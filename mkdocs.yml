@@ -58,6 +58,7 @@ markdown_extensions:
       
 nav:
   - Installation: "index.md"
+  - Why Kriten?: "why.md"
   - Overview: "overview.md"
   - Feature Configuration:
     - Role Based Access Control: "rbac.md"
