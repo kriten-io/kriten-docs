@@ -1,2 +1,0 @@
-# Task OpenAPI schema
-
