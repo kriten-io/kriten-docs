@@ -42,14 +42,14 @@ or
 
 |Parameter|Description|Default|
 |---------|-----------|-------|
-|`ingress.enabled`|Ingress configuration enabled|`true`
+|`ingress.enabled`|Ingress configuration enabled|`false`
 |`ingress.className`|Ingress class name|`"nginx"`
 |`ingress.hosts[0].host`|Ingress host name|`"example.com"`
 |`frontend.enabled`|Set to true to install GUI|`false`
 |`frontend.backendAddress`| URL for the backend ingress|`"example.com"`
 |`replicaCount`|Number of desired Kriten pods|`1`|
-|`image.repository`|Kriten Docker image repository|`"evolvere/kriten-core"`|
-|`image.tag`|Kriten Docker image tag|`"v0.3-beta4"`|
+|`image.repository`|Kriten Docker image repository|`"kubecodeio/kriten"`|
+|`image.tag`|Kriten Docker image tag|`"latest"`|
 |`image.pullPolicy`|Pull policy for Kriten Docker image|`"IfNotPresent"`|
 |`imagePullSecrets`|Kubernetes secrets to pull container images from private repository|`["name": "dockerhub]`|
 |`name`|Kriten deployment name|`"kriten"`
