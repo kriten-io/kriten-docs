@@ -58,8 +58,12 @@ nav:
   - Installation: "index.md"
   - Why Kriten?: "why.md"
   - Overview: "overview.md"
-  - Feature Configuration:
-    - Role Based Access Control: "rbac.md"
+  - User Guide:
+    - Getting Started: "user_guide/getting_started.md"
+    - Manage Secrets: "user_guide/manage_secrets.md"
+    - Manage API tokens: "user_guide/api_tokens.md"
+    - Manage Task OpenAPI Schema: "user_guide/task_schema.md"
+    - Role Based Access Control: "user_guide/rbac.md"
     
 copyright: |
   &copy; 2024 <a href="https://github.com/kriten-io"  target="_blank" rel="noopener">Kubecode Limited</a>
