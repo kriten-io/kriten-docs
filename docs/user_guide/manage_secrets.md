@@ -7,17 +7,21 @@
 
 ## Secrets overview
 
-Automation scripts always need secrets, i.e. tokens or credentials to access infrastructure devices, services, etc. Kriten provides facility to store secrets as Kubernetes secrets and makes them available at the time of Job launching. Secrets are provisioned by admin users and not visible to executors of Tasks.
+Automation scripts always need secrets, i.e. tokens or credentials to access infrastructure devices, services, etc. Kriten provides facility to store secrets as Kubernetes secrets and makes them available at the time of Job launching as files in /etc/secret directory and also as environmental vars. Secrets are provisioned by admin users and not visible to executors of Tasks.
 
 Secrets are associated with Runners. Runner defines execution environment - code repository with automation code, container image with all the packages and dependencies needed to run automation code, etc.
 
 Example: 
 
+```console
+POST /api/v1/runners
+```
+
 ```json
 {
   "name": "kriten-examples",
   "image": "python:3.9-slim",
-  "gitURL": "https://github.com/kriten-io/kriten-examples.git",
+  "gitURL": "https://github.com/kriten-io/kriten-community-toolkit.git",
   "secret": {
       "username": "admin",
       "password": "P@55w0rd!",
@@ -26,12 +30,12 @@ Example:
 }
 ```
 
-Secrets are defined in the `secret` field of the runner and can be created at the time of Runner creating or patching (update). After secrets created - they are obfuscated and won't be visible via Kriten.
+Secrets are defined in the `secret` field of the runner and can be created at the time of Runner creation or patching (update). After secrets created - they are obfuscated and won't be visible via Kriten.
 
 Getting Runner info:
 
 ```console
-GET /api/v1/kriten-example
+GET /api/v1/runners/kriten-example
 ```
 
 Produces response, where secrets are hidden and can't be observed.
@@ -46,18 +50,18 @@ Produces response, where secrets are hidden and can't be observed.
     },
     "name": "kriten-examples",
     "image": "python:3.9-slim",
-    "gitURL": "https://github.com/kriten-io/kriten-examples.git",
+    "gitURL": "https://github.com/kriten-io/kriten-community-toolkit.git",
     "token": "",
     "branch": "main"
 }
 ```
 
-Kriten provides endpoint for CRUD operation of secrets as `/api/v1/$RUNNER_NAME/secret`, i.e. for above `/api/v1/kriten-examples/secret`.
+Kriten provides endpoint for CRUD operation of secrets as `/api/v1/runners/$RUNNER_NAME/secret`, i.e. for above `/api/v1/runners/kriten-examples/secret`.
 
 * Getting secrets
 
 ```console
-GET /api/v1/kriten-examples/secret
+GET /api/v1/runners/kriten-examples/secret
 ```
 
 Example response body:
@@ -73,13 +77,13 @@ Example response body:
 * Delete all secrets associated with the runner:
 
 ```console
-DELETE /api/v1/kriten-examples/secret
+DELETE /api/v1/runners/kriten-examples/secret
 ```
 
 * Add secrets to the runner:
 
 ```console
-POST /api/v1/kriten-examples/secret
+POST /api/v1/runners/kriten-examples/secret
 ```
 
 Body of request:
@@ -97,7 +101,7 @@ That will add those secrets to the `kriten-examples` runner.
 * Update secrets
 
 ```console
-POST /api/v1/kriten-examples/secret
+POST /api/v1/runners/kriten-examples/secret
 ```
 
 Body of request:
@@ -139,12 +143,12 @@ curl -c ./token.txt -X POST $KRITEN_URL'/api/v1/login' \
 2. Create Runner with secrets.
 
 ```console
-curl -b ./token.txt $KRITEN_URL'/api/v1/runners' \
+curl -b ./token.txt -X POST $KRITEN_URL'/api/v1/runners' \
 --header 'Content-Type: application/json' \
 --data '{
   "name": "kriten-examples",
   "image": "python:3.9-slim",
-  "gitURL": "https://github.com/kriten-io/kriten-examples.git",
+  "gitURL": "https://github.com/kriten-io/kriten-community-toolkit.git",
   "secret": {
       "username": "admin",
       "password": "P@55w0rd!",
@@ -156,7 +160,7 @@ curl -b ./token.txt $KRITEN_URL'/api/v1/runners' \
 3. Get secrets.
 
 ```console
-curl -b ./token.txt $KRITEN_URL'/api/v1/runners/kriten-examples/secret'
+curl -b ./token.txt -X GET $KRITEN_URL'/api/v1/runners/kriten-examples/secret'
 ```
 
 Body of response:
@@ -186,7 +190,7 @@ Body of response:
     },
     "name": "kriten-examples",
     "image": "python:3.9-slim",
-    "gitURL": "https://github.com/kriten-io/kriten-examples.git",
+    "gitURL": "https://github.com/kriten-io/kriten-community-toolkit.git",
     "token": "",
     "branch": "main"
 }
@@ -211,6 +215,7 @@ Body of response, where we can see new secret has been added:
     "super_secret":"*************",
     "username":"*************"
 }
+```
 
 5. Delete individual secret.
 

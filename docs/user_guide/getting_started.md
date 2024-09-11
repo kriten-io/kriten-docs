@@ -8,7 +8,7 @@ By the end of this guide, you will learn how to:
 * create a Task
 * launch a job against configured Task
 
-Kriten-example repo has several examples. We will be using python script hello-kriten.py. That script demonstrates Kriten capability to expose input parameters and secrets to the automation script at the time of execution - this script simply reads them and prints out into Stdout. Input parameters as supplied at the time of launching a job by a user and exposed as EXTRA_VARS json string in the running container, and secrets supplied at the time of creating a runner by the admin user and those secrets stored as kubernetes secrets and exposed to the automation script as ENV VARS & as files in /etc/secret in a running container.
+Kriten-community-toolkit public repo contains simple kriten examples ("https://github.com/kriten-io/kriten-community-toolkit/tree/main/examples"). We will be using python script hello-kriten.py. That script demonstrates Kriten capability to expose input parameters and secrets to the automation script at the time of execution - this script simply reads them and prints out into Stdout. Input parameters as supplied at the time of launching a job by a user and exposed as EXTRA_VARS json string in the running container, and secrets supplied at the time of creating a runner by the admin user and those secrets stored as kubernetes secrets and exposed to the automation script as ENV VARS & as files in /etc/secret in a running container.
 
 ## Login
 
@@ -18,7 +18,7 @@ To login into Kriten as following:
 
 
 ```console
-curl -c ./token.txt $KRITEN_URL'/api/v1/login' \
+curl -c ./token.txt -X POST $KRITEN_URL'/api/v1/login' \
 --header 'Content-Type: application/json' \
 --data '{
   "username": "root",
@@ -41,12 +41,12 @@ Runner creates an environment, or one can think of it as Project, and maps follo
 
 
 ```console
-curl -b ./token.txt $KRITEN_URL'/api/v1/runners' \
+curl -b ./token.txt -X POST $KRITEN_URL'/api/v1/runners' \
 --header 'Content-Type: application/json' \
 --data '{
   "name": "kriten-examples",
   "image": "python:3.9-slim",
-  "gitURL": "https://github.com/kriten-io/kriten-examples.git",
+  "gitURL": "https://github.com/kriten-io/kriten-community-toolkit.git",
   "secret": {
       "username": "admin",
       "password": "P@55w0rd!",
@@ -78,7 +78,7 @@ curl -b ./token.txt -X POST $KRITEN_URL'/api/v1/tasks' \
 --data '{
   "name": "hello-kriten",
   "runner": "kriten-examples",
-  "command": "python hello-kriten/hello-kriten.py"
+  "command": "python examples/hello-kriten/hello-kriten.py"
 }'
 ```
 
