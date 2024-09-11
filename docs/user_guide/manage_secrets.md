@@ -3,15 +3,13 @@
 ## Table of Content
 
 - [Secrets overview](#secrets-overview)
-- [Working with Secrets Example](#secrets-example)
+- [Secrets example](#secrets-example)
 
 ## Secrets overview
 
 Automation scripts always need secrets, i.e. tokens or credentials to access infrastructure devices, services, etc. Kriten provides facility to store secrets as Kubernetes secrets and makes them available at the time of Job launching as files in /etc/secret directory and also as environmental vars. Secrets are provisioned by admin users and not visible to executors of Tasks.
 
 Secrets are associated with Runners. Runner defines execution environment - code repository with automation code, container image with all the packages and dependencies needed to run automation code, etc.
-
-Example: 
 
 ```console
 POST /api/v1/runners
@@ -126,7 +124,7 @@ Following rules are applied at updating secrets:
 
 We will demonstrate above on example with curl commands. We will create runner with secretes as above, add a new secret to existing secrets and delete that secret after.
 
-1. Login into Kriten.
+* Login into Kriten.
 
 We will login into Kriten with default credentials as example.
 
@@ -140,7 +138,7 @@ curl -c ./token.txt -X POST $KRITEN_URL'/api/v1/login' \
 }' 
 ```
 
-2. Create Runner with secrets.
+* Create Runner with secrets.
 
 ```console
 curl -b ./token.txt -X POST $KRITEN_URL'/api/v1/runners' \
@@ -157,7 +155,7 @@ curl -b ./token.txt -X POST $KRITEN_URL'/api/v1/runners' \
 }'
 ```
 
-3. Get secrets.
+* Get secrets.
 
 ```console
 curl -b ./token.txt -X GET $KRITEN_URL'/api/v1/runners/kriten-examples/secret'
@@ -196,7 +194,7 @@ Body of response:
 }
 ```
 
-4. Add new secret to the runner secrets.
+* Add new secret to the runner secrets.
 
 ```console
 curl -b ./token.txt -X POST $KRITEN_URL'/api/v1/runners/kriten-examples/secret' \
@@ -217,7 +215,7 @@ Body of response, where we can see new secret has been added:
 }
 ```
 
-5. Delete individual secret.
+* Delete individual secret.
 
 To delete `mysecret` we will POST again, but this time make value as empty string "".
 
