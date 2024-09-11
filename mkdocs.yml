@@ -61,8 +61,6 @@ nav:
   - User Guide:
     - Getting Started: "user_guide/getting_started.md"
     - Manage Secrets: "user_guide/manage_secrets.md"
-    - Manage API tokens: "user_guide/api_tokens.md"
-    - Manage Task OpenAPI Schema: "user_guide/task_schema.md"
     - Role Based Access Control: "user_guide/rbac.md"
     
 copyright: |
