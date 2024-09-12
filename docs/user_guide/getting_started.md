@@ -47,6 +47,7 @@ curl -b ./token.txt -X POST $KRITEN_URL'/api/v1/runners' \
   "name": "kriten-examples",
   "image": "python:3.9-slim",
   "gitURL": "https://github.com/kriten-io/kriten-community-toolkit.git",
+  "branch": "main",
   "secret": {
       "username": "admin",
       "password": "P@55w0rd!",
