@@ -35,6 +35,8 @@ extra:
       link: https://github.com/kriten-io
     - icon: fontawesome/brands/linkedin
       link: https://www.linkedin.com/company/kubecode-limited
+    - icon: fontawesome/brands/slack
+      link: https://netdev-community.slack.com/archives/C06PJKB2HUJ
 
 markdown_extensions:
   - tables
