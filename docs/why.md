@@ -1,9 +1,10 @@
 # Why Kriten?
 
-## Democratisation of Software
+## Infrastructure Automation is Hard
 
-The barrier to entry to writing software lowering. Software development is accessible to everyone.
-Organisations have a large potential resource pool empowered to build customised utilities and apps.
+Infrastructure teams are usually organised by discipline; Server, Network, Storage for example. Automation routines have to work cross-domains to provide a service. Kriten allows engineers to publish their own routines, using the languages and tools that best suit. Consumers can run the routines by calling an authorised API endpoint. Kriten creates the endpoint and runs the code on a Kubernetes cluster, engineers can focus on their code. A full RBAC scheme is provided to control who can modify or run code.
+
+![Kriten](assets/kriten-overview.png)
 
 ## It works on my laptop
 
