@@ -65,6 +65,9 @@ nav:
     - Manage Secrets: "user_guide/manage_secrets.md"
     - Role Based Access Control: "user_guide/rbac.md"
     - API Tokens: "user_guide/api_tokens.md"
+  - Roadmap:
+    - Webhooks: "roadmap/webhooks.md"
+    - MCP Server: "roadmap/mcp_server.md"
     
 copyright: |
   &copy; 2024 <a href="https://github.com/kriten-io"  target="_blank" rel="noopener">Kubecode Limited</a>
