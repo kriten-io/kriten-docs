@@ -67,7 +67,6 @@ nav:
     - API Tokens: "user_guide/api_tokens.md"
     - Webhooks: "user_guide/webhooks.md"
   - Roadmap:
-    - Webhooks: "roadmap/webhooks.md"
     - MCP Server: "roadmap/mcp_server.md"
     
 copyright: |

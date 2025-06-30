@@ -1,6 +1,6 @@
 # Webhooks
 
-For seamless integrations and to facilitate event driven automation, Webhook capability was added into Kriten as of version 0.5. This version supports webhook integration with Infrahub (https://opsmill.com), Netbox (https://netboxlabs.com).
+For seamless integrations and to facilitate event driven automation, Webhook receiver capability was added into Kriten as of version 0.5. This version supports webhook integration with Infrahub (https://opsmill.com), Netbox (https://netboxlabs.com).
 
 Kriten defines one-to-one mapping between a webhook and a kriten task. On successful webhook event, Kriten executes associated task and passes json body as json string via EXTRA_VARS environmental variable.
 
@@ -16,7 +16,7 @@ Current supported webhook impementations:
 
 Note: Any system can add support for Kriten webhook by adhering to one of those implemented options.
 
-## Configure Kriten webhook
+## Configure Kriten webhook receiver
 
 To demonstrate capability of webhook feature, we will be leveraging "hello-kriten" example from https://github.com/kriten-io/kriten-community-toolkit repo. This simple python app prints supplied input parameters exposed to it as EXTRA_VARS environmental variable. On webhook event, that variable will be populated with json body from sender. Task "hello-kriten" has been already configured, see hello-kriten documentation in examples/hello-kriten in above repo.
 
@@ -82,7 +82,13 @@ In Integrations -> Webhooks create Standard Webhook:
 
 ![Infrahub Webhook](../assets/infrahub_webhook.png)
 
-Where changes to Network device in main branch would trigger webhook event. To create event we will modify description for one of the devices: fra05-pod1-leaf1. As result webhook event will be posted and Kriten will run the job against task "hello-kriten".
+Where changes to Network device in main branch would trigger webhook event. 
+
+There is a device, fra01-pod1-leaf1:
+
+![Infrahub Device Info](../assets/infrahub_device.png)
+
+To create event we will modify description to "Arista switch", as result webhook event will be triggered and event data posted to Kriten webhook receiver, which will execute job against task "hello-kriten".
 
 * Get list of jobs
 
