@@ -57,14 +57,15 @@ markdown_extensions:
       emoji_generator: !!python/name:materialx.emoji.to_svg
       
 nav:
-  - Installation: "index.md"
-  - Why Kriten?: "why.md"
+  - Why Kriten?: "index.md"
+  - Installation: "install.md"
   - Overview: "overview.md"
   - User Guide:
     - Getting Started: "user_guide/getting_started.md"
     - Manage Secrets: "user_guide/manage_secrets.md"
     - Role Based Access Control: "user_guide/rbac.md"
     - API Tokens: "user_guide/api_tokens.md"
+    - Webhooks: "user_guide/webhooks.md"
   - Roadmap:
     - Webhooks: "roadmap/webhooks.md"
     - MCP Server: "roadmap/mcp_server.md"
