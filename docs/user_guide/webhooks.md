@@ -72,7 +72,7 @@ Returns:
  "updated_at":"2025-06-30T18:29:51.798623565Z"}
 ```
 
-To execute this webhook, sender need to post to URL "$KRITEN_URL/api/v1/webhooks/run/$ID", where $ID is "id" of above created webhook, and signature calculated with "secret".
+To execute this webhook, sender need to post to URL \$KRITEN_URL/api/v1/webhooks/run/\$ID", where $ID is "id" of above created webhook, and signature calculated with "secret".
 
 ## Configure Infrahub webhook
 
