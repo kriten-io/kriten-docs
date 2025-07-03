@@ -9,7 +9,7 @@ where $KRITEN_URL is set to the URL of your Kriten instance.
 
 ## Configure cronjob for Kriten task
 
-As example, let's take simple python script "hello-kriten" from https://github.com/kriten-io/kriten-community-toolkit repo. That is a simple script, which demonstrate Kriten ability to inject secrets and input parameters into python script at the time of execution. First, create a hello-kriten task following easy steps from corresponding README file.
+Let's take simple python script "hello-kriten" from examples in https://github.com/kriten-io/kriten-community-toolkit repo. That is a simple script, which demonstrates Kriten ability to inject secrets and input parameters into python script at the time of execution. First, create a hello-kriten task following easy steps from README for hello-kriten.
 
 Checking that "hello-kriten" task has been created.
 
