@@ -45,7 +45,7 @@ Returns:
 Let's create cronjob object to run "hello-kriten" with following extra_vars parameters every 5 minutes.
 
 ```console
-curl -b ./token.txt -X POST $KRITEN_URL'/api/v1/login' \
+curl -b ./token.txt -X POST $KRITEN_URL'/api/v1/cronjobs' \
 --header 'Content-Type: application/json' \
 --data '{
     "name": "hello-kriten-cronjob",
@@ -151,6 +151,26 @@ Returns:
     }
 }
 ```
+
+* Disable cronjob
+
+To stop cronjob from executing task, set disable to true by updating the cronjob:
+
+```console
+curl -b ./token.txt -X PATCH $KRITEN_URL'/api/v1/cronjobs/hello-kriten-cronjob' \
+--header 'Content-Type: application/json' \
+--data '{
+    "name": "hello-kriten-cronjob",
+    "task": "hello-kriten",
+    "schedule": "*/5 * * * *",
+    "disable": true,
+    "extra_vars": {
+        "agent_name": "Ethan Hunt",
+        "operation":"Mission impossible"
+    }
+}' 
+```
+
 
 
 
