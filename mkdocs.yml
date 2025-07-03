@@ -66,7 +66,7 @@ nav:
     - Role Based Access Control: "user_guide/rbac.md"
     - API Tokens: "user_guide/api_tokens.md"
     - Webhooks: "user_guide/webhooks.md"
-    - Running tasks on Schedule (Cronjobs): "user_guide/cronjobs"
+    - Running tasks on Schedule: "user_guide/cronjobs"
   - Roadmap:
     - MCP Server: "roadmap/mcp_server.md"
     
