@@ -18,7 +18,7 @@ Note: Any system can add support for Kriten webhook by adhering to one of those 
 
 ## Configure Kriten webhook receiver
 
-To demonstrate capability of webhook feature, we will be leveraging "hello-kriten" example from https://github.com/kriten-io/kriten-community-toolkit repo. This simple python app prints supplied input parameters exposed to it as EXTRA_VARS environmental variable. On webhook event, that variable will be populated with json body from sender. Task "hello-kriten" has been already configured, see hello-kriten documentation in examples/hello-kriten in above repo.
+To demonstrate capability of webhook feature, we will be leveraging "hello-kriten" example from https://github.com/kriten-io/kriten-community-toolkit repo. This simple python app prints supplied input parameters exposed to it as EXTRA_VARS environmental variable. On webhook event, that variable will be populated with json body from sender. First, create a "hello-task" as documented in Getting Started section of User Guide.
 
 $KRITEN_URL is set to the URL of your Kriten instance.
 
