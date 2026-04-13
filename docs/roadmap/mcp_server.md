@@ -11,6 +11,6 @@ Kriten can run any code securely, with full RBAC. As it is a Kubernetes applicat
 
 ## When will it be ready?
 
-We are planning a beta release for Q3 2025.
+We are assessing demand for this feature.
 
 ![Kriten MCP Server](../assets/kriten-MCP.png)
