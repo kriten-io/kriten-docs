@@ -105,7 +105,7 @@ Use helm to install Kriten and the frontend:
 helm install kriten kriten/kriten -n kriten \
 --set frontend.enabled=true \
 --set frontend.backendAddress=$IP_ADDRESS':30040'  \
---set frontend.image.repository=kubecodeio/kriten-frontend \
+--set frontend.image.repository=kubecodeio/kriten-web \
 --set frontend.image.tag="latest" \
 --namespace kriten --create-namespace
 ```
