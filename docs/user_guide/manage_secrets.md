@@ -263,3 +263,11 @@ if secret_files:
 else:
     print("No task secrets provided.")
 ```
+
+Secrets are also exposed as environment varialbles in the Job container.
+
+Python example:
+```python
+import os
+API_KEY = os.environ.get("API_KEY")
+```
