@@ -4,6 +4,7 @@
 
 - [Secrets overview](#secrets-overview)
 - [Secrets example](#secrets-example)
+- [Reading secrets in your code](#reading-secrets-in-your-code)
 
 ## Secrets overview
 
@@ -235,4 +236,30 @@ Body of response will return secrets without `mysecret`:
     "super_secret":"*************",
     "username":"*************"
 }
+```
+
+## Reading secrets in your code
+
+Kriten exposes task secrets to the Job container as files stored in /etc/secret/ directory.
+Each key is a file with key name = file name, and the content is the value.
+
+Python example:
+
+```python
+import os
+
+secrets = {}
+secrets_path = '/etc/secret/'
+secret_files = os.listdir(secrets_path)
+
+if secret_files:
+    for file_name in secret_files:
+        if os.path.isfile(secrets_path + file_name):
+            with open(secrets_path + file_name, 'r') as f:
+                value = f.read()
+                secrets[file_name] = value
+    print(f"Secrets {list(secrets.keys())} are set.")
+
+else:
+    print("No task secrets provided.")
 ```
