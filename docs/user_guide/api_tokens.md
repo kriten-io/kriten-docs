@@ -2,7 +2,7 @@
 
 Programmatic access to Kriten is provided via API tokens (keys). API tokens are generated per user and adhere RBAC rules.
 
-* List API tokens
+## List API tokens
 
 Select API Tokens from the account menu top right.
 For non-admin user only own API tokens will be returned, if RBAC permissions not granted to get all.
@@ -10,7 +10,8 @@ Admin user will see all tokens by following query:
 
 ![Kriten API tokens](../assets/kriten-api-tokens.png)
 
-* Add API token
+## Add API token
+
 To create a token, select + New from the API Tokens menu.
 
 ![New Kriten API token](../assets/kriten-create-api-token.png)
