@@ -14,19 +14,19 @@ Kriten-community-toolkit public repo contains simple kriten examples ("https://g
 
 Open a browser session to the Kriten UI (http://kriten-ui.example.com in the installation example).
 
-## Login
+### Login
 
 Kriten requires user to authenticate. After installation the *local* admin user is created with the following default credentials *root/root*.
 
 To login into Kriten as following:
 
-![Kriten login](assets/kriten-login.png)
+![Kriten login](../assets/kriten-login.png)
 
 On successful login, Kriten UI stores a JWT token.
 
 Token timeout is defined as a configuration parameter at Kriten's installation, default is 3600 sec.
 
-## Create Runner
+### Create Runner
 
 Runner creates an environment, or one can think of it as Project, and maps following settings:
 
@@ -36,7 +36,7 @@ Runner creates an environment, or one can think of it as Project, and maps follo
 
 Select Runners and + New
 
-![Kriten new runner](assets/kriten-add-runner.png)
+![Kriten new runner](../assets/kriten-add-runner.png)
 
 Runner fields reference:
 
@@ -49,13 +49,13 @@ Runner fields reference:
 |`image`|Container image from reachable container registry|
 |`secret`|Secrets shared with all tasks associated with this runner, map of key/value pairs|
 
-## Add Task
+### Add Task
 
 Runner has been created, now we can create a task. Task creates execution endpoint for the target script.
 
 Select Tasks ans + New
 
-![Kriten new task](assets/kriten-add-task.png)
+![Kriten new task](../assets/kriten-add-task.png)
 
 As result, there will be REST API endpoint created for task and available for lunching jobs: `$KRITEN_URL/api/v1/jobs/hello-kriten`
 
@@ -71,13 +71,13 @@ Task fields reference:
 
 *Schema validates job at the start and prevents launching job if input parameters incorrect or missing.
 
-## Launch Job
+### Launch Job
 
 Launching Job against that Task can be done by an athenticated user if this user has permissions to do so, defined by RBAC. In this guide we will launch the job as the admin user, which is already authenticated (assuming the token hasn't been expired).
 
 Select Run
 
-![Kriten launch task](assets/kriten-run-task.png)
+![Kriten launch task](../assets/kriten-run-task.png)
 
 That will launch the job against task exposed as REST API endpoint /api/v1/jobs/hello-kriten. Kriten will launch the k8s Job and return Job ID, which then can be used to check statuc of the Job and read result.
 
@@ -85,4 +85,37 @@ Kriten has ability to capture json data in the Stdout and return in `json_data` 
 
 Also, Kriten can print out Stdout of executed Job by appending /log to the above request:
 
-![Kriten job result](assets/kriten-job-result.png)
+![Kriten job result](../assets/kriten-job-result.png)
+
+### Input Parameters
+
+If you define input parameters for a task, Kriten will validate they have been supplied correctly.
+
+> [!NOTE] A task with mo input schema will accept *any* parameters via the API.
+
+![Kriten job result](../assets/kriten-task-schema.png)
+
+The UI will present input parameters as menu items.
+
+
+![Kriten launch task with parameters](../assets/kriten-task-parameters.png)
+
+## Swagger UI
+
+All operations performed via the UI are available through the API. The Swagger UI documents the API, and provides a way to make API calls.
+
+Open a browser session to Kriten Swagger (http://kriten-ui.example.com/swagger/index.html in the installation example).
+
+Use the /login endpoint to authenticate:
+
+![Kriten swagger login](../assets/kriten-swagger-login.png)
+
+Successful login will return a token.
+
+![Kriten swagger login token](../assets/kriten-swagger-login-token.png)
+
+Copy the token (without quotes) and paste into the Authorize value preceded by the word "Bearer"
+
+![Kriten swagger authorize](../assets/kriten-swagger-authorize.png)
+
+You should now be able to run any API call (if your account is authorised)
