@@ -24,15 +24,22 @@ helm repo add kriten https://kriten-io.github.io/kriten-charts/
 helm repo update
 ```
 
-### Copy values.yaml (if necessary) and edit myvalues.yaml
-```helm show values kriten/kriten > myvalues.yaml```
-
-### Install
-```helm install -f myvalues.yaml kriten kriten/kriten -n kriten --create-namespace```
-
-or
-
-```helm install kriten kriten/kriten -n kriten --create-namespace```
+### Install with Nginx
+If you have nginx installed on the cluster, the following will install Kriten with ingresses for the API and UI:
+```sh
+helm install kriten kriten/kriten -n kriten-lab \
+--set ingress.enabled=true \
+--set ingress.hosts[0].host="kriten.example.com" \
+--set ingress.hosts[0].paths[0].path="/" \
+--set ingress.hosts[0].paths[0].pathType="Prefix" \
+--set frontend.enabled=true \
+--set frontend.backendAddress="kriten.example.com"  \
+--set frontend.ingress.enabled=true \
+--set frontend.ingress.hosts[0].host="kriten-ui.example.com" \
+--set frontend.ingress.hosts[0].paths[0].path="/" \
+--set frontend.ingress.hosts[0].paths[0].pathType="Prefix" \
+--create-namespace
+```
 
 ## MacBook Install
 
@@ -105,8 +112,6 @@ Use helm to install Kriten and the frontend:
 helm install kriten kriten/kriten -n kriten \
 --set frontend.enabled=true \
 --set frontend.backendAddress=$IP_ADDRESS':30040'  \
---set frontend.image.repository=kubecodeio/kriten-web \
---set frontend.image.tag="latest" \
 --create-namespace
 ```
 
