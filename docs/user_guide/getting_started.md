@@ -97,7 +97,6 @@ If you define input parameters for a task, Kriten will validate they have been s
 
 The UI will present input parameters as menu items.
 
-
 ![Kriten launch task with parameters](../assets/kriten-task-parameters.png)
 
 ## Swagger UI

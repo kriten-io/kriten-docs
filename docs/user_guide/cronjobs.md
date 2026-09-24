@@ -6,6 +6,7 @@ Any task in Kriten can be executed on repatable schedule via cronjob object.
 
 where $KRITEN_URL is set to the URL of your Kriten instance.
 
+> [!NOTE] Cronjobs are not available in the UI (yet)
 
 ## Configure cronjob for Kriten task
 
@@ -13,7 +14,7 @@ Let's take simple python script "hello-kriten" from examples in https://github.c
 
 Checking that "hello-kriten" task has been created.
 
-* Login: 
+* Login:
 
 ```console
 curl -c ./token.txt -X POST $KRITEN_URL'/api/v1/login' \
@@ -22,7 +23,7 @@ curl -c ./token.txt -X POST $KRITEN_URL'/api/v1/login' \
   "username": "root",
   "password": "root",
   "provider": "local"
-}' 
+}'
 ```
 
 * Get task hello-kriten:
@@ -56,10 +57,10 @@ curl -b ./token.txt -X POST $KRITEN_URL'/api/v1/cronjobs' \
         "agent_name": "Ethan Hunt",
         "operation":"Mission impossible"
     }
-}' 
+}'
 ```
 
-|Key| Description | 
+|Key| Description |
 |---------|-----------|
 |`name`| unique name of the cronjob object|
 |`task`| existing task name to be executed on schedule|
@@ -168,10 +169,5 @@ curl -b ./token.txt -X PATCH $KRITEN_URL'/api/v1/cronjobs/hello-kriten-cronjob' 
         "agent_name": "Ethan Hunt",
         "operation":"Mission impossible"
     }
-}' 
+}'
 ```
-
-
-
-
-
