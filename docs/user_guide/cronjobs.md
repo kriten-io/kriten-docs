@@ -6,7 +6,6 @@ Any task in Kriten can be executed on repatable schedule via cronjob object.
 
 where $KRITEN_URL is set to the URL of your Kriten instance.
 
-> [!NOTE]
 > Cronjobs are not available in the UI (yet)
 
 ## Configure cronjob for Kriten task

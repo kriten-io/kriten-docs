@@ -91,8 +91,7 @@ Also, Kriten can print out Stdout of executed Job by appending /log to the above
 
 If you define input parameters for a task, Kriten will validate they have been supplied correctly.
 
-> [!NOTE]
-> A task with mo input schema will accept *any* parameters via the API.
+> A task with no input schema will accept *any* parameters via the API.
 
 ![Kriten job result](../assets/kriten-task-schema.png)
 
