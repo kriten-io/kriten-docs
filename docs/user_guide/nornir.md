@@ -13,7 +13,7 @@ To run Nornir on Kriten, you need a container image with Nornir and any other pr
 git clone https://github.com/kriten-io/kriten-community-toolkit.git
 ```
 
-### Edit the code in the ```nornir``` directory.
+### Edit the files in the ```nornir``` directory.
 
 | Path | Instructions |
 |------|--------------|

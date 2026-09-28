@@ -69,6 +69,7 @@ nav:
     - Running tasks on Schedule: "user_guide/cronjobs.md"
     - Webhooks: "user_guide/webhooks.md"
     - Nornir: "user_guide/nornir.md"
+    - Ansible: "user_guide/ansible.md"
   - Roadmap:
     - MCP Server: "roadmap/mcp_server.md"
 
