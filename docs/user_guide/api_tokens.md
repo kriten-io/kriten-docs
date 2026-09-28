@@ -28,7 +28,7 @@ Copy the API key
 
 ![Kriten API key](../assets/kriten-api-token-created.png)
 
-## Using an API token to run jobs
+## Using an API token to run tasks
 
 Put the API token in the request header:
 

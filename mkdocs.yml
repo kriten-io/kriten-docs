@@ -17,14 +17,14 @@ theme:
   palette:
     - scheme: default
       toggle:
-        icon: material/toggle-switch-off-outline 
+        icon: material/toggle-switch-off-outline
         name: Switch to dark mode
       primary: teal
-      accent: purple 
-    - scheme: slate 
+      accent: purple
+    - scheme: slate
       toggle:
         icon: material/toggle-switch
-        name: Switch to light mode    
+        name: Switch to light mode
       primary: teal
       accent: lime
 
@@ -55,7 +55,7 @@ markdown_extensions:
   - pymdownx.emoji:
       emoji_index: !!python/name:materialx.emoji.twemoji
       emoji_generator: !!python/name:materialx.emoji.to_svg
-      
+
 nav:
   - Why Kriten?: "index.md"
   - Installation: "install.md"
@@ -68,8 +68,9 @@ nav:
     - API Tokens: "user_guide/api_tokens.md"
     - Running tasks on Schedule: "user_guide/cronjobs.md"
     - Webhooks: "user_guide/webhooks.md"
+    - Nornir: "user_guide/nornir.md"
   - Roadmap:
     - MCP Server: "roadmap/mcp_server.md"
-    
+
 copyright: |
   &copy; 2024 <a href="https://github.com/kriten-io"  target="_blank" rel="noopener">Kubecode Limited</a>
