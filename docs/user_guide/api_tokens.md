@@ -27,3 +27,16 @@ API token object fields reference:
 Copy the API key
 
 ![Kriten API key](../assets/kriten-api-token-created.png)
+
+## Using an API token to run jobs
+
+Put the API token in the request header:
+
+```sh
+curl -X 'POST' \
+  'http://kriten-lab.192.168.10.190.nip.io/api/v1/tasks/hello-kriten/run' \
+  -H 'accept: application/json' \
+  -H 'Token: kri_C5FCKt1ig5RwTPTihPVSD6JyUfYSpL52kRqn' \
+  -H 'Content-Type: application/json' \
+  -d '{"greeting": "Hello"}'
+```

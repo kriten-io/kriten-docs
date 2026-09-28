@@ -1,6 +1,6 @@
 # Extra Vars
 
-## Extra Vars
+## Using EXTRA_VARS in your code
 
 Extra Vars is a way to read runtime arguments to your code. Whe you launch a job, you can add JSON data. If the task contains a schema, the data must comply to the schema spec.
 
