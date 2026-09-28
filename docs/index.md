@@ -26,11 +26,13 @@ The infratructure owners need:
 - Audit trail.
 - A reliable and scalable platform.
 
-## “Genius is making complex ideas simple, not making simple ideas complex.”
-
-Code in any language can be published in 2 steps (or less in some cases). 
+Code in any language can be published in 2 steps (or less in some cases).
 Kriten takes care of building an API endpoint that consumers can use to run the code.
 The code is run on Kubernetes, leveraging the scalability, reliability and portability benefits, but after installation no Kubernetes knowledge is needed.
+
+## Network Automation Forum
+
+Kriten is in the Executor category of the [Network Automation Framework](https://reference.networkautomation.forum/Framework/Framework/#architecture).
 
 ## Open-source
 

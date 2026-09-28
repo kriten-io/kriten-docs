@@ -28,7 +28,7 @@ Jobs only have 'read' permission.
     | `Admin`                | *             | *            | write      |
     | `WriteAllRunners`      | runners       | *            | write      |
     | `WriteAllTasks`        | tasks         | *            | write      |
-    | `WriteAllJobs`         | jobs          | *            | write      |
+    | `ExecuteAllTasks`      | tasks         | *            | execute    |
     | `WriteAllUsers`        | users         | *            | write      |
     | `WriteAllRoles`        | roles         | *            | write      |
 
