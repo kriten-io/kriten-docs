@@ -36,7 +36,7 @@ Put the API token in the request header:
 curl -X 'POST' \
   'http://kriten-lab.192.168.10.190.nip.io/api/v1/tasks/hello-kriten/run' \
   -H 'accept: application/json' \
-  -H 'Token: kri_C5FCKt1ig5RwTPTihPVSD6JyUfYSpL52kRqn' \
+  -H 'Token: kri_SQnv4YCL7qsLgBY2q22FjTv4y3AtkVfDCcYQ' \
   -H 'Content-Type: application/json' \
   -d '{"greeting": "Hello"}'
 ```

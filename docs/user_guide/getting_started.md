@@ -103,7 +103,7 @@ The UI will present input parameters as menu items.
 
 All operations performed via the UI are available through the API. The Swagger UI documents the API, and provides a way to make API calls.
 
-Open a browser session to Kriten Swagger (http://kriten-ui.example.com/swagger/index.html in the installation example).
+Open a browser session to Kriten Swagger (http://kriten.example.com/swagger/index.html in the installation example).
 
 Use the /login endpoint to authenticate:
 

@@ -3,7 +3,7 @@
 ## Kriten overview
 
 
-Kriten is a code execution platform. It is written for and runs on kubernetes as a cloud native application. Kriten exposes containerized applications written in any modern languagues as no-code REST API endpoint, with local or/and AD authentication and granular RBAC it allows requester to execute that code as a kubernetes job and to get result asynchronously or synchronously. 
+Kriten is a code execution platform. It is written for and runs on kubernetes as a cloud native application. Kriten exposes containerized applications written in any modern languagues as no-code REST API endpoint, with local or/and AD authentication and granular RBAC it allows requester to execute that code as a kubernetes job and to get result asynchronously or synchronously.
 
 Key features:
 
@@ -32,14 +32,16 @@ For application to run on Kriten only minimum optional changes are needed, if ap
 ### Runner
 
 Runner object defines the following:
+
 * Git project repository, branch and access password/token if repository is private.
 * Container image with all libraries, packages and dependencies, needed to run application(s) in the repository.
+* Secrets are optionally provided, which are stored as kubernetes secrets and mapped to k8s job containers at the time of execution as files in /etc/secret/ directory or as environmental vars.
 
 ### Task
 
 Task is a child object of Runner and defines the following:
+
 * Command to execute application or script from associated by Runner repository at the time of starting k8s job container.
-* Secrets are optionally provided, which are stored as kubernetes secrets and mapped to k8s job containers at the time of execution as files in /etc/secret/ directory or as environmental vars.
 * Schema in OpenAPI specification is optionally provided, which allows Kriten to validate input parameters against schema and deny job creation if those are not matching the schema.
 
 Multiple tasks can be associated with the same Runner. It allows exposing same script or application with different parameters as separate tasks, i.e. one allowing only perform read kind operation and another to do write operation and to control via RBAC, which users are allowed to execute jobs against those tasks.
@@ -50,6 +52,6 @@ Kriten can return custom data in a result of a job by capturing json string prin
 
 ### Job
 
-Jobs are triggered against defined Tasks. Permission is controlled via RBAC.
+Executing a task creates a Job. Permission to execute tasks is controlled via RBAC.
 
-Executor of a Job may need to supply Input parameters as it may be required by application or script at the time of execution as optionally defined in schema. Those Input parameters are provided in the body of REST API request and mapped to k8s job containers as Environmental var 'EXTRA_VARS' as a json string.
+Executor of a task may need to supply input parameters as it may be required by application or script at the time of execution as optionally defined in schema. Those Input parameters are provided in the body of REST API request and mapped to k8s job containers as Environmental var 'EXTRA_VARS' as a json string.

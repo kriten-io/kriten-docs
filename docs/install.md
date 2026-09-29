@@ -74,13 +74,13 @@ Add nodeports:
 kubectl apply -n kriten -f - <<EOF
 apiVersion: v1
 kind: Service
-metadata:  
+metadata:
   name: kriten-nodeport
 spec:
-  selector:    
+  selector:
     app: kriten
   type: NodePort
-  ports:  
+  ports:
   - name: http
     port: 80
     targetPort: 8080
@@ -88,13 +88,13 @@ spec:
 ---
 apiVersion: v1
 kind: Service
-metadata:  
+metadata:
   name: kriten-frontend-nodeport
 spec:
-  selector:    
+  selector:
     app: kriten-frontend
   type: NodePort
-  ports:  
+  ports:
   - name: http
     port: 80
     targetPort: 80
@@ -123,7 +123,7 @@ curl -c ./token.txt -X POST 'http://'$IP_ADDRESS':30040/api/v1/login' \
   "username": "root",
   "password": "root",
   "provider": "local"
-}' 
+}'
 ```
 
 Which returns a token:
@@ -131,7 +131,7 @@ Which returns a token:
 {"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJvb3QiLCJ1c2VyX2lkIjoiODJkOTg4NGItZmIxZC00MmQ4LTgxM2MtZTJlYjY1ZDllYmMzIiwicHJvdmlkZXIiOiJsb2NhbCIsImV4cCI6MTc0MTQ1OTkwMn0.zerwoMCIYHM4qE5k3h2rw9chwtWhrr2568zh2_1x5SY"}
 ```
 
-Browse to "http://"$IP_ADDRESS":30050". 
+Browse to "http://"$IP_ADDRESS":30050".
 
 ## Helm Chart Parameters
 
@@ -140,12 +140,12 @@ Browse to "http://"$IP_ADDRESS":30050".
 |`ingress.enabled`|Ingress configuration enabled|`false`
 |`ingress.className`|Ingress class name|`"nginx"`
 |`ingress.hosts[0].host`|Ingress host name|`"example.com"`
-|`frontend.enabled`|Set to true to install GUI|`false`
+|`frontend.enabled`|Set to true to install UI|`true`
 |`frontend.backendAddress`| URL for the backend ingress|`"example.com"`
 |`replicaCount`|Number of desired Kriten pods|`1`|
 |`image.repository`|Kriten Docker image repository|`"kubecodeio/kriten"`|
 |`image.tag`|Kriten Docker image tag|`"latest"`|
-|`image.pullPolicy`|Pull policy for Kriten Docker image|`"IfNotPresent"`|
+|`image.pullPolicy`|Pull policy for Kriten Docker image|`"Always"`|
 |`imagePullSecrets`|Kubernetes secrets to pull container images from private repository|`["name": "dockerhub]`|
 |`name`|Kriten deployment name|`"kriten"`
 |`namespace`|Namespace for Kriten|`"kriten"`
