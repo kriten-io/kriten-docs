@@ -31,8 +31,8 @@ We have a public image on dockerhub at kubecodeio/ansible:2.21
 
 | Field | Value |
 |-------|-------|
-| name | ansible-2.12.4 |
-| image | kubecodeio/nornir:2.21 |
+| name | ansible-2.21.4 |
+| image | kubecodeio/ansible:2.21 |
 | gitURL | https://github.com/kriten-io/kriten-community-toolkit.git |
 | branch | main |
 
