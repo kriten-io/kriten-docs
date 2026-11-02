@@ -50,5 +50,5 @@ For example, task requires two fields, one text and one dropdown:
 }
 ```
 
-
+![Kriten input schema](../assets/kriten-input-schema.png)
 
