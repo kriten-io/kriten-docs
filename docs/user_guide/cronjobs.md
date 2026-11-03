@@ -12,10 +12,10 @@ where $KRITEN_URL is set to the URL of your Kriten instance.
 
 |Key| Description |
 |---------|-----------|
-|`name`| unique name of the cronjob object|
+|`name`| unique name of the scheduler|
 |`task`| existing task name to be executed on schedule|
 |`schedule`| schedule based on Cron syntax|
-|`disabled`| boolean true or false - disables cronjob, default is set to false|
+|`disabled`| boolean true or false - disables scheduler, default is set to false|
 |`extra_vars`| input parameters, exposed to custom code via EXTRA_VARS env var as json string|
 
 
