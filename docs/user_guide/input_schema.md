@@ -1,8 +1,8 @@
-# Input Schema
+# Input Parameter Schema
 
 ## Defining the input parameters for your code
 
-When you add a task you have an optional schema field. If you leave it blank, Kriten will accept any extra_vars input without validation.
+When you add a task you have an optional schema field. If you leave it blank, Kriten will accept any [extra_vars](extra_vars.md) input without validation.
 The schema allows you to specify the available input fields, and if they are optional or required. Kriten will validate input arguments against the schema before running the task.
 
 For example, your task requires a message field:
