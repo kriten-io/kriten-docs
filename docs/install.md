@@ -137,18 +137,16 @@ Browse to "http://"$IP_ADDRESS":30050".
 
 |Parameter|Description|Default|
 |---------|-----------|-------|
-|`ingress.enabled`|Ingress configuration enabled|`false`
-|`ingress.className`|Ingress class name|`"nginx"`
-|`ingress.hosts[0].host`|Ingress host name|`"example.com"`
-|`frontend.enabled`|Set to true to install UI|`true`
-|`frontend.backendAddress`| URL for the backend ingress|`"example.com"`
+|`rootPassword`|Root user password, should be changed after install|`"root"`
 |`replicaCount`|Number of desired Kriten pods|`1`|
-|`image.repository`|Kriten Docker image repository|`"kubecodeio/kriten"`|
-|`image.tag`|Kriten Docker image tag|`"latest"`|
-|`image.pullPolicy`|Pull policy for Kriten Docker image|`"Always"`|
+|`jobsTTL`|Kubernetes auto-deletion of completed/failed Jobs|`3600`|
+|`jobsWorkerCount`|Number Kriten workers, monitoring k8s jobs|`1`|
+|`jobsPollInterval`|Jobs polling interval for workers in seconds|`5`|
+|`image.repository`|Kriten Docker image repository|`"kubecodeio/kriten"`
+|`image.tag`|Kriten Docker image tag|`"latest"`
+|`image.pullPolicy`|Pull policy for Kriten Docker image|`"Always"`
 |`imagePullSecrets`|Kubernetes secrets to pull container images from private repository|`["name": "dockerhub]`|
 |`name`|Kriten deployment name|`"kriten"`
-|`namespace`|Namespace for Kriten|`"kriten"`
 |`serviceAccount.create`| Specifies whether a service account should be created for Kriten|`true`
 |`serviceAccount.annotations`| Annotations to add to the service account|`{}`
 |`serviceAccount.name`|The name of the service account to use, if not set and create true, a name is generated using the fullname template|`""`
@@ -160,10 +158,14 @@ Browse to "http://"$IP_ADDRESS":30050".
 |`ldap.fqdn`|LDAP/AD service IP or FQDN|`""`
 |`ldap.port`|LDAP/AD access TCP port (389 or 639 for TLS)|`389`
 |`ldap.baseDN`|LDAP/AD base DN|`""`
-|`jwt.key`|Private key or secret to sign issued JWT|`""`
+|`mcp.enabled`|MCP Enabled|`false`
+|`mcp.stdoutLimit`|MCP Stdout Limit|`65536`
+|`mcp.maxWaitSeconds`|MCP Max Wait Seconds to wait for response|`30`
+|`mcp.pollIntervalMs`|MCP Poll Interval in Milliseconds|`2000`
+|`jwt.key`|Private key or secret to sign issued JWT|`"vcwYCYkum_2Fsukk_i"`
 |`jwt.expiry_seconds`|JWT expiry in seconds|`3600`
 |`postgresql.install`|PostgreSQL installed as part of Kriten installation if set to *true*, or use external if *false* |`true`
-|`postgresql.host`|PostgreSQL Host for internal or external depending on *postgresql.install* parameter|`"kriten-community-postgresql"`
+|`postgresql.host`|PostgreSQL Host for internal or external depending on *postgresql.install* parameter|`"kriten-postgresql"`
 |`postgresql.port`|PostgreSQL TCP port|`5432`
 |`postgresql.image.registry`|PostgreSQL Docker image registry|`docker.io`
 |`postgresql.image.repository`|PostgreSQL Docker image repository|`bitnami/postgresql`
@@ -172,4 +174,19 @@ Browse to "http://"$IP_ADDRESS":30050".
 |`postgresql.auth.password`|PostgreSQL password|`kriten`
 |`postgresql.auth.database`|PostgreSQL database name|`kriten`
 |`postgresql.persistence.enabled`|PostgreSQL database persistnce storage enabled|`true`
+|`ingress.enabled`|Ingress configuration enabled|`false`
+|`ingress.className`|Ingress class name|`"nginx"`
+|`ingress.hosts[0].host`|Ingress hosts|`"kriten.example.com"`
+|`ingress.hosts[0].paths[0].path`|Ingress path|`"/"`
+|`ingress.hosts[0].paths[0].pathType`|Ingress pathType|`"Prefix"`
+|`frontend.enabled`|Kriten Frontend (UI) enabled|`true`
+|`frontend.backendAddress`|Kriten backend address|`"kriten.example.com"`
+|`frontend.image.repository`|Kriten Frontend repo|`"kubecodeio/kriten-ui"`
+|`frontend.image.tag`|Kriten Frontend image tag|`"latest"`
+|`frontend.image.pullPolicy`|Pull policy for Kriten Frontend Docker image|`"Always"`
+|`frontend.ingress.enabled`|Ingress configuration enabled|`false`
+|`frontend.ingress.className`|Ingress class name|`"nginx"`
+|`frontend.ingress.hosts[0].host`|Ingress hosts|`"kriten-ui.example.com"`
+|`frontend.ingress.hosts[0].paths[0].path`|Ingress path|`"/"`
+|`frontend.ingress.hosts[0].paths[0].pathType`|Ingress pathType|`"Prefix"`
 
