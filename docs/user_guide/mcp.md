@@ -52,9 +52,13 @@ How to create API token, see User Guide.
 ## Tools available
 
 The Kriten MCP server exposes four tools, all called through execute under tools.Kriten:
+
 1. ```list_tasks()```: Lists the tasks available to you that have an input schema, with their descriptions.
+
 2. ```get_task({ id })```: Returns one task's description and input schema, which you need to know what extra_vars to pass.
+
 3. ```run_task({ id, extra_vars? })```: Runs a task. extra_vars must match the task's schema. Returns a job ID and initial status.
+
 4. ```get_job({ id, wait_seconds? })```: Returns a job's status, completed and failed counts, failure reason, stdout, and any JSON output. Use wait_seconds to wait for a running job to finish.
 
 A typical flow is ```list_tasks``` → ```get_task``` → ```run_task``` → ```get_job```.
