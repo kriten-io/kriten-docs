@@ -71,6 +71,7 @@ nav:
     - Webhooks: "user_guide/webhooks.md"
     - Nornir: "user_guide/nornir.md"
     - Ansible: "user_guide/ansible.md"
+    - MCP: "user_guide/mcp.md"
 
 copyright: |
   &copy; 2024 <a href="https://github.com/kriten-io"  target="_blank" rel="noopener">Kubecode Limited</a>
