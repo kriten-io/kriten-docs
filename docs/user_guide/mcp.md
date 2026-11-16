@@ -37,7 +37,7 @@ Example, OpenCode config:
   "mcp": {
     "Kriten": {
       "type": "remote",
-      "url": "http://kriten.example.com/api/v1/mcp",
+      "url": "https://kriten.example.com/api/v1/mcp",
       "oauth": false,
       "headers": {
         "Authorization": "Bearer <kriten api token>"
@@ -45,6 +45,12 @@ Example, OpenCode config:
     }
   } 
 }
+```
+
+> You may need to set environment variable NODE_TLS_REFECT_UNAUTHORIZED=0 if using a self-signed certificate.
+
+```sh
+export NODE_TLS_REFECT_UNAUTHORIZED=0
 ```
 
 How to create API token, see User Guide.
