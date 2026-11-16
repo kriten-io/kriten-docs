@@ -47,10 +47,10 @@ Example, OpenCode config:
 }
 ```
 
-> You may need to set environment variable NODE_TLS_REFECT_UNAUTHORIZED=0 if using a self-signed certificate.
+> You may need to set environment variable NODE_TLS_REJECT_UNAUTHORIZED=0 if using a self-signed certificate.
 
 ```sh
-export NODE_TLS_REFECT_UNAUTHORIZED=0
+export NODE_TLS_REJECT_UNAUTHORIZED=0
 ```
 
 How to create API token, see User Guide.
